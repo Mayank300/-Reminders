@@ -3,7 +3,7 @@ import { StyleSheet, View, ActivityIndicator } from "react-native";
 import { ListItem, Icon } from "react-native-elements";
 import { windowHeight, windowWidth } from "../components/Dimensions";
 import firebase from "firebase";
-import SwipeableFlatlist from "../components/SwipeableFlatlist";
+import SwipeAbleFlatList from "../components/SwipeAbleFlatList";
 import db from "../config";
 
 export default class NotificationScreen extends Component {
@@ -34,21 +34,6 @@ export default class NotificationScreen extends Component {
       });
   };
 
-  keyExtractor = (item, index) => index.toString();
-
-  renderItem = ({ item, index }) => {
-    return (
-      <ListItem
-        key={index}
-        leftElement={<Icon name="genderless" type="font-awesome" />}
-        title={item.book_name}
-        titleStyle={{ color: "black", fontWeight: "bold" }}
-        subtitle={item.message}
-        bottomDivider
-      />
-    );
-  };
-
   componentDidMount() {
     this.getNotifications();
   }
@@ -72,7 +57,7 @@ export default class NotificationScreen extends Component {
               <ActivityIndicator size="large" color="gray" />
             </View>
           ) : (
-            <SwipeableFlatlist allNotifications={this.state.allNotifications} />
+            <SwipeAbleFlatList allNotifications={this.state.allNotifications} />
           )}
         </View>
       </View>

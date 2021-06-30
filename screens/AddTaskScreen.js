@@ -9,7 +9,6 @@ import {
   ScrollView,
   TextInput,
   Keyboard,
-  Switch,
   StyleSheet,
   Alert,
 } from "react-native";
@@ -40,11 +39,10 @@ export default class AddTaskScreen extends React.Component {
       notesText: "",
       isDateTimePickerVisible: false,
       isAlarmSet: false,
-      currentDay: [
-        `${moment().format("YYYY")}-${moment().format("MM")}-${moment().format(
-          "DD"
-        )}`,
-      ],
+      currentDay: `${moment().format("YYYY")}-${moment().format(
+        "MM"
+      )}-${moment().format("DD")}`,
+
       selectedDay: {
         [`${moment().format("YYYY")}-${moment().format("MM")}-${moment().format(
           "DD"
@@ -101,9 +99,6 @@ export default class AddTaskScreen extends React.Component {
 
   addTask = () => {
     const taskTime = moment(this.state.alarmTime).format("h:mm A");
-    var S4 = function () {
-      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    };
 
     db.collection("tasks").add({
       id: Math.random().toString(36).substring(7),

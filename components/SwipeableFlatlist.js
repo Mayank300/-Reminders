@@ -1,13 +1,20 @@
 import React, { Component } from "react";
-import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
-import { ListItem, Icon } from "react-native-elements";
+import {
+  Animated,
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+} from "react-native";
+import { ListItem } from "react-native-elements";
 
 import { SwipeListView } from "react-native-swipe-list-view";
 
 import db from "../config";
 import { windowHeight, windowWidth } from "./Dimensions";
 
-export default class SwipeableFlatlist extends Component {
+export default class SwipeAbleFlatList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,16 +33,19 @@ export default class SwipeableFlatlist extends Component {
     const { key, value } = swipeData;
     if (value < -Dimensions.get("window").width) {
       const newData = [...allNotifications];
-      this.updateMarkAsRead(allNotifications[key]);
+      // this.updateMarkAsRead(allNotifications[key]);
       newData.splice(key, 1);
       this.setState({ allNotifications: newData });
-      console.log(key);
+      // console.log("key ->> " + key);
+      // console.log(swipeData);
     }
   };
 
   renderItem = (data) => (
     <Animated.View>
-      <ListItem style={styles.taskListContent}>
+      <StatusBar hidden />
+
+      <ListItem>
         <View>
           <View
             style={{
@@ -74,15 +84,13 @@ export default class SwipeableFlatlist extends Component {
             <View
               style={{
                 flexDirection: "row",
-                marginLeft: 20,
-                width: 270,
               }}
             >
               <ListItem.Subtitle
                 style={{
                   color: "gray",
                   fontSize: 17,
-                  marginLeft: 30,
+                  marginLeft: 50,
                 }}
               >
                 for {data.item.task_date} on {data.item.task_time}
@@ -136,27 +144,6 @@ export default class SwipeableFlatlist extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#eaeef7",
-  },
-
-  taskListContent: {
-    height: 100,
-    width: windowWidth / 1.2,
-    alignSelf: "center",
-    borderRadius: 10,
-    shadowColor: "#2E66E7",
-    backgroundColor: "#ffffff",
-    marginVertical: 12,
-    shadowOffset: {
-      width: 3,
-      height: 3,
-    },
-    shadowRadius: 5,
-    shadowOpacity: 0.3,
-    elevation: 3,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
   },
 
   // for renderHiddenItem
@@ -174,12 +161,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingLeft: 15,
-    marginVertical: 12,
-    height: 100,
-    width: windowWidth / 1.2,
-    alignSelf: "center",
-    borderRadius: 10,
   },
   backRightBtn: {
     alignItems: "center",
