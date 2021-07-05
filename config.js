@@ -4,7 +4,6 @@ require("@firebase/firestore");
 var firebaseConfig = {
   apiKey: "AIzaSyBH-FgnrT4Dh6W3WRgqHWzrRoD0WIdbHO8",
   authDomain: "reminders-03.firebaseapp.com",
-  databaseURL: "https://reminders-03.firebaseio.com",
   projectId: "reminders-03",
   storageBucket: "reminders-03.appspot.com",
   messagingSenderId: "427368897117",

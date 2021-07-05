@@ -419,5 +419,6 @@ const styles = StyleSheet.create({
   },
   goBackArrow: {
     alignItems: "flex-start",
+    marginLeft: 10,
   },
 });

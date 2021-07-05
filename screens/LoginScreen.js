@@ -15,15 +15,6 @@ import * as Permission from "expo-permissions";
 import * as Notification from "expo-notifications";
 import firebase from "firebase";
 
-Notification.setNotificationHandler({
-  handleNotification: async () => {
-    return {
-      shouldPlaySound: true,
-      shouldShowAlert: true,
-    };
-  },
-});
-
 const { width, height } = Dimensions.get("window");
 
 export default class LoginScreen extends Component {
@@ -62,18 +53,6 @@ export default class LoginScreen extends Component {
         var errorMessage = error.message;
         return Alert.alert(errorMessage);
       });
-  };
-
-  handleLogInNotification = () => {
-    Notification.scheduleNotificationAsync({
-      content: {
-        title: "Logged In Successfully 🙂 ",
-        body: "Thank You",
-      },
-      trigger: {
-        seconds: 3,
-      },
-    });
   };
 
   render() {
@@ -122,7 +101,6 @@ export default class LoginScreen extends Component {
             <TouchableOpacity
               onPress={() => {
                 this.login(this.state.email, this.state.password);
-                this.handleLogInNotification();
               }}
             >
               <View style={styles.button}>
